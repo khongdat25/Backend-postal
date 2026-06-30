@@ -1,3 +1,5 @@
+const env = require('../configs/env');
+
 class CrmService {
   /**
    * Đồng bộ thông tin Lead sang BizFly CRM qua Public Webhook
@@ -6,7 +8,7 @@ class CrmService {
    */
   async forwardToBizFly(lead) {
     try {
-      const webhookUrl = process.env.BIZFLY_WEBHOOK_URL || '';
+      const webhookUrl = env.BIZFLY_WEBHOOK_URL;
 
       // Trích xuất thông tin Cộng tác viên / Người giới thiệu từ database
       let collaborator = null;
