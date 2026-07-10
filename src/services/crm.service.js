@@ -18,7 +18,8 @@ class CrmService {
           collaborator = lead.collaboratorId;
         } else {
           try {
-            const User = require('../models/User');
+            const mongoose = require('mongoose');
+            const User = mongoose.models.User || mongoose.model('User');
             collaborator = await User.findById(lead.collaboratorId).lean();
           } catch (dbErr) {
             console.error('[CrmService] Lỗi khi truy vấn thông tin CTV từ db:', dbErr.message);
@@ -95,6 +96,10 @@ class CrmService {
         urgency: lead.urgency,
         preferred_contact: lead.preferredContact,
         collaborator_name: collaboratorName,
+        option_1: collaboratorName,
+        option1: collaboratorName,
+        option_2: collaboratorName,
+        option2: collaboratorName,
         product_price: commissionDetails ? commissionDetails.productPrice : 0,
         commission_amount: commissionDetails ? commissionDetails.commissionAmount : 0,
         commission_rate: commissionDetails ? commissionDetails.commissionRate : 0,
